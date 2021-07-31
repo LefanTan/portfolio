@@ -16,14 +16,17 @@ module.exports = {
       },
       fontFamily: {
         main: ['Montserrat']
+      },
+      width:{
+        fullscreen: "4000px"
       }
     },
   },
   variants: {
+    scrollSnapType: ['responsive'],
     extend: {
       scale: ['active']
     } 
   },
-  plugins: [
-  ],
+  plugins: [require('tailwindcss-scroll-snap')],
 }
