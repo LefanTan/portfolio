@@ -1,10 +1,9 @@
-import React from 'react';
-import './App.css';
+import { StartPage } from "./components/StartPage";
 
 function App() {
   return (
-    <div>
-  
+    <div className="bg-deep-blue w-screen h-screen flex justify-center items-center">
+      <StartPage/>
     </div>
   );
 }
