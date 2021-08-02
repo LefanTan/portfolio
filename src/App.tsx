@@ -1,4 +1,6 @@
 import React, { useRef } from "react";
+import { useEffect } from "react";
+import { AboutMe } from "./components/AboutMe";
 import { StartPage } from "./components/StartPage";
 
 function App() {
@@ -14,12 +16,10 @@ function App() {
   }
 
   return (
-    <main ref={mainRef} onWheel={horizontalScrolling} className="bg-off-white w-screen h-screen p-0 block whitespace-nowrap overflow-auto overflow-y-hidden snap snap-x snap-mandatory">
-      <StartPage className="inline-block snap snap-center" />
+    <main ref={mainRef} onWheel={horizontalScrolling} className="bg-transparent w-screen h-screen p-0 whitespace-nowrap flex overflow-x-scroll overflow-y-hidden snap snap-x snap-mandatory">
+      <StartPage className="inline-block snap snap-center"/>
       {/* About me */}
-      <div className="bg-off-white w-screen h-screen inline-block snap snap-center">
-        <p>HITE</p>
-      </div>
+      <AboutMe className="inline-block snap snap-center"/>
     </main>
   );
 }

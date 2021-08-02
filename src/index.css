@@ -27,6 +27,8 @@ code {
 
 :root{
   --deep-blue: #22333b;
+  --deep-blue-shade: #375563;
+  --deep-blue-shade2x: #456a7b;
   --red: #b8473b;
   --off-white: #ffffff;
   --off-white-hover: #cccccc;
