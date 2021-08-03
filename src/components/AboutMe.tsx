@@ -5,7 +5,7 @@ import { animated, useSpring } from "react-spring";
 import { useScrollListener } from "./Hooks";
 import { BasicProp } from "./Interfaces";
 
-export const AboutMe = memo(({ className, scrollIntoView }: BasicProp) => {
+export const AboutMe = memo(({ className }: BasicProp) => {
 
     const [mainDom, setMainDode] = useState<HTMLInputElement | null>(null)
     const [transition, setTransState] = useState(false)
@@ -16,7 +16,6 @@ export const AboutMe = memo(({ className, scrollIntoView }: BasicProp) => {
         }
     }, [])
 
-    if(scrollIntoView && mainDom && !transition) mainDom.scrollIntoView({behavior: 'smooth'})
     useScrollListener(mainDom, (isIn) => setTransState(isIn))
 
     const deepBlueBg = useSpring({
@@ -40,7 +39,7 @@ export const AboutMe = memo(({ className, scrollIntoView }: BasicProp) => {
     })
 
     return (
-        <div ref={refHandler} className={`${className} bg-transparent`}>
+        <div id="aboutme" ref={refHandler} className={`${className} bg-transparent`}>
             <div className="bg-transparent w-screen h-screen flex justify-center items-center overflow-hidden relative">
                 <animated.div style={deepBlueBg} className="absolute top-0 bottom-0 -left-1/2 -right-1/2 drop-shadow-lg" />
                 <animated.div style={darkGreyBg} className="absolute top-0 bottom-0 -left-1/2 -right-1/2 drop-shadow-lg" />

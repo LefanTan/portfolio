@@ -4,8 +4,6 @@ import { StartPage } from "./components/StartPage";
 
 function App() {
   const mainRef = useRef<HTMLInputElement | null>(null)
-  const [focusOn, setFocusOn] = useState("")
-
 
   var prevDeltaX = 0
   const horizontalScrolling = (e: React.WheelEvent) => {
@@ -21,9 +19,8 @@ function App() {
 
   return (
     <main ref={mainRef} onWheel={horizontalScrolling} className="bg-transparent w-screen h-screen p-0 whitespace-nowrap flex overflow-x-scroll overflow-y-hidden snap snap-x snap-mandatory">
-      <StartPage scrollIntoView={focusOn === 'startpage'} onAboutMeClicked={() => { setFocusOn('aboutme'); setTimeout(() => setFocusOn(''), 1) }} className="inline-block snap snap-end" />
-      {/* About me */}
-      <AboutMe scrollIntoView={focusOn === 'aboutme'} className="inline-block snap snap-end" />
+      <StartPage className="inline-block snap snap-end" />
+      <AboutMe className="inline-block snap snap-end" />
     </main>
   );
 }
