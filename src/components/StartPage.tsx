@@ -7,20 +7,28 @@ import profilePic from "../assets/profilepic.png";
 import { isMobile } from "react-device-detect";
 import { BasicProp } from "./Interfaces";
 import { useSpring, animated } from "react-spring";
-import { useState } from "react";
+import React, {memo, useCallback, useState } from "react";
 import { useScrollListener } from "./Hooks";
 
-export const StartPage = ({ className }: BasicProp) => {
+interface StartPageProp extends BasicProp{
+    onAboutMeClicked?: (event: React.MouseEvent<HTMLElement>) => void
+    onMyProjectsClicked?: (event: React.MouseEvent<HTMLElement>) => void
+}
+
+export const StartPage = memo(({ className, scrollIntoView, onAboutMeClicked, onMyProjectsClicked }: StartPageProp) => {
 
     const [mainDom, setMainDom] = useState<HTMLInputElement | null>(null)
     // True means start transition
     const [transitionState, setTransState] = useState(true)
 
-    // Calls when ref of highest level div changes
-    const refHandler = (node: HTMLInputElement) => {
-        if (node !== null) setMainDom(node)
-    }
+    // Calls when ref of highest level div changes, so we can pass in the node to useScrollListener
+    const refHandler = useCallback((node: HTMLInputElement) => {
+        if (node !== null) {
+            setMainDom(node)
+        }
+    },[])
 
+    if(scrollIntoView && mainDom) mainDom.scrollIntoView({behavior: 'smooth'})
     useScrollListener(mainDom, (isIn) => setTransState(isIn))
 
     const slideRightVal = -120
@@ -34,7 +42,7 @@ export const StartPage = ({ className }: BasicProp) => {
         from: { transform: `translateX(55%)` },
         transform: `translateX(40%)`,
         left: `-200%`,
-        config: { mass: 2, friction: 60 },
+        config: { mass: 1, friction: 60 },
         reset: true,
         reverse: !transitionState
     })
@@ -48,6 +56,26 @@ export const StartPage = ({ className }: BasicProp) => {
         reset: true,
         reverse: !transitionState
     })
+
+    const slideOutProps = useSpring({
+        from: {
+            clipPath: `inset(0% 100% 0% 0%)`,
+        },
+        clipPath: `inset(0% 0% 0% 0%)`,
+        reset: true,
+        reverse: !transitionState
+    })
+
+    const bounceButtonProp = useSpring({
+        from: { transform: `translateX(0px)` },
+        transform: `translateX(5px)`,
+        config: { duration: 600, mass: 0.1, tension: 1 },
+        delay: 200,
+        reset: true,
+        loop: {
+            reverse: true
+        }
+    });
 
     return (
         // Start Scene
@@ -65,61 +93,67 @@ export const StartPage = ({ className }: BasicProp) => {
                             />
                         </Block>
                     )}
-                    <Block className="bg-red flex flex-col">
-                        <h1 className="small-light-text text-2xl mb-2">
-                            Lefan Tan (Jia Hui)
-                        </h1>
-                        <h2 className="small-light-text font-bold">Front-end Developer</h2>
-                        <div className="flex items-center">
-                            <HiMail className="text-off-white mr-2" />
-                            <p className="small-light-text">lefantan@hotmail.com</p>
-                        </div>
-                        <div className="flex items-center">
-                            <AiTwotonePhone className="text-off-white mr-2" />
-                            <p className="small-light-text">780-604-9457</p>
-                        </div>
-                        <div className="flex items-center mt-auto">
-                            <button className="w-8 h-8 transition duration-200 text-off-white drop-shadow-sm hover:text-off-white-hover transform active:scale-90 ">
-                                <AiOutlineGithub className="w-full h-full" />
-                            </button>
-                            <button className="ml-3 w-8 h-8 transition duration-200 text-off-white drop-shadow-sm hover:text-off-white-hover transform active:scale-90">
-                                <RiLinkedinFill className="w-full h-full" />
-                            </button>
-                            <button className="text-red text-sm w-fit h-7 ml-auto bg-off-white rounded shadow-md transition duration-200 transform active:scale-90 relative overflow-hidden">
-                                <span className="ml-2 mr-2 w-full h-full">Contact Me!</span>
-                                <animated.div onMouseLeave={() => setSlideButton({ right: slideRightVal })} onMouseEnter={() => setSlideButton({ right: 0 })} style={slideProps} className="w-56 h-full opacity-25 rounded absolute top-0 right-0" />
-                            </button>
-                        </div>
+                    <Block>
+                        <animated.div style={slideOutProps} className="bg-red w-full h-full flex flex-col p-4 pl-5 pr-5 shadow-xl">
+                            <h1 className="small-light-text text-2xl mb-2">
+                                Lefan Tan (Jia Hui)
+                            </h1>
+                            <h2 className="small-light-text font-bold">Front-end Developer</h2>
+                            <div className="flex items-center">
+                                <HiMail className="text-off-white mr-2" />
+                                <p className="small-light-text">lefantan@hotmail.com</p>
+                            </div>
+                            <div className="flex items-center">
+                                <AiTwotonePhone className="text-off-white mr-2" />
+                                <p className="small-light-text">780-604-9457</p>
+                            </div>
+                            <div className="flex items-center mt-auto">
+                                <button className="w-8 h-8 transition duration-200 text-off-white drop-shadow-sm hover:text-off-white-hover transform active:scale-90 ">
+                                    <AiOutlineGithub className="w-full h-full" />
+                                </button>
+                                <button className="ml-3 w-8 h-8 transition duration-200 text-off-white drop-shadow-sm hover:text-off-white-hover transform active:scale-90">
+                                    <RiLinkedinFill className="w-full h-full" />
+                                </button>
+                                <button className="text-red text-sm w-fit h-7 ml-auto bg-off-white rounded shadow-md transition duration-200 transform active:scale-90 relative overflow-hidden">
+                                    <span className="ml-2 mr-2 w-full h-full">Contact Me!</span>
+                                    <animated.div onMouseLeave={() => setSlideButton({ right: slideRightVal })} onMouseEnter={() => setSlideButton({ right: 0 })} style={slideProps} className="w-56 h-full opacity-25 rounded absolute top-0 right-0" />
+                                </button>
+                            </div>
+                        </animated.div>
                     </Block>
-                    <Block className="bg-dark-green">
-                        <div className="relative w-full h-full">
-                            <h1 className="small-light-text text-2xl">About Me</h1>
-                            <animated.button className="transition duration-200 text-off-white absolute bottom-0 -right-2 w-12 h-full lg:h-12 hover:text-off-white-hover transform active:scale-75">
-                                <MdNavigateNext className="w-full h-full" />
-                            </animated.button>
-                        </div>
+                    <Block>
+                        <animated.div style={slideOutProps} className="bg-dark-green w-full h-full flex flex-col p-4 pl-5 pr-5 shadow-xl">
+                            <div className="relative w-full h-full">
+                                <h1 className="small-light-text text-2xl">About Me</h1>
+                                <animated.button onClick={onAboutMeClicked} style={bounceButtonProp} className="transition duration-200 text-off-white absolute bottom-0 -right-2 w-12 h-full lg:h-12 hover:text-off-white-hover">
+                                    <MdNavigateNext className="w-full h-full" />
+                                </animated.button>
+                            </div>
+                        </animated.div>
                     </Block>
                     {!isMobile && (
                         <Block className="bg-transparent shadow-none flex justify-center items-center">
                             <img
                                 src={profilePic}
                                 alt="Profile Pic"
-                                className="p-8 filter drop-shadow-md"
+                                className="p-10 filter drop-shadow-md"
                             />
                         </Block>
                     )}
-                    <Block className="bg-off-white">
-                        <div className="relative w-full h-full">
-                            <h1 className="small-light-text text-dark-grey text-2xl">
-                                Projects I've done
-                            </h1>
-                            {/* <animated.button style={bounceProp} className="transition duration-200 text-dark-grey absolute bottom-0 -right-2 w-12 h-full lg:h-12 hover:text-dark-grey-hover">
-                                <MdNavigateNext className="w-full h-full" />
-                            </animated.button> */}
-                        </div>
+                    <Block>
+                        <animated.div style={slideOutProps} className="bg-off-white w-full h-full flex flex-col p-4 pl-5 pr-5 shadow-xl">
+                            <div className="relative w-full h-full">
+                                <h1 className="small-light-text text-dark-grey text-2xl">
+                                    Projects I've done
+                                </h1>
+                                <animated.button onClick={onMyProjectsClicked} style={bounceButtonProp} className="transition duration-200 text-dark-grey absolute bottom-0 -right-2 w-12 h-full lg:h-12 hover:text-dark-grey-hover">
+                                    <MdNavigateNext className="w-full h-full" />
+                                </animated.button>
+                            </div>
+                        </animated.div>
                     </Block>
                 </div>
             </div>
         </div>
     );
-};
+});

@@ -1,25 +1,29 @@
-import React, { useRef } from "react";
-import { useEffect } from "react";
+import React, { useRef, useState } from "react";
 import { AboutMe } from "./components/AboutMe";
 import { StartPage } from "./components/StartPage";
 
 function App() {
   const mainRef = useRef<HTMLInputElement | null>(null)
+  const [focusOn, setFocusOn] = useState("")
 
+
+  var prevDeltaX = 0
   const horizontalScrolling = (e: React.WheelEvent) => {
-    var scrollPosition = mainRef.current?.scrollLeft
-    mainRef.current?.scrollTo({
+    var scrollPosition = mainRef.current?.scrollLeft;
+    // e.deltaX being -0 means it is a scroll wheel (not trackpad)
+    (e.deltaX === 0 && prevDeltaX === 0) && mainRef.current?.scrollTo({
       top: 0,
       left: (scrollPosition ?? 0) + e.deltaY * 5,
       behavior: 'smooth'
     })
+    prevDeltaX = e.deltaX
   }
 
   return (
     <main ref={mainRef} onWheel={horizontalScrolling} className="bg-transparent w-screen h-screen p-0 whitespace-nowrap flex overflow-x-scroll overflow-y-hidden snap snap-x snap-mandatory">
-      <StartPage className="inline-block snap snap-center"/>
+      <StartPage scrollIntoView={focusOn === 'startpage'} onAboutMeClicked={() => { setFocusOn('aboutme'); setTimeout(() => setFocusOn(''), 1) }} className="inline-block snap snap-end" />
       {/* About me */}
-      <AboutMe className="inline-block snap snap-center"/>
+      <AboutMe scrollIntoView={focusOn === 'aboutme'} className="inline-block snap snap-end" />
     </main>
   );
 }

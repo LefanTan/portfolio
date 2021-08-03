@@ -1,22 +1,26 @@
-import { useState } from "react";
+import React, { useCallback, useState } from "react";
+import { memo } from "react";
+import { isMobile } from "react-device-detect";
 import { animated, useSpring } from "react-spring";
 import { useScrollListener } from "./Hooks";
 import { BasicProp } from "./Interfaces";
 
-export const AboutMe = ({ className }: BasicProp) => {
+export const AboutMe = memo(({ className, scrollIntoView }: BasicProp) => {
 
-    const [mainNode, setMainNode] = useState<HTMLInputElement | null>(null)
+    const [mainDom, setMainDode] = useState<HTMLInputElement | null>(null)
     const [transition, setTransState] = useState(false)
-    const refHandler = (el: HTMLInputElement) => {
-        if (el !== null) { 
-            //el.scrollIntoView(); 
-            setMainNode (el)
+
+    const refHandler = useCallback((node: HTMLInputElement) => {
+        if (node !== null) { 
+            setMainDode (node)
         }
-    }
-    useScrollListener(mainNode, (isIn) => setTransState(isIn))
+    }, [])
+
+    if(scrollIntoView && mainDom && !transition) mainDom.scrollIntoView({behavior: 'smooth'})
+    useScrollListener(mainDom, (isIn) => setTransState(isIn))
 
     const deepBlueBg = useSpring({
-        background: `linear-gradient(60deg, ${getComputedStyle(document.body).getPropertyValue('--deep-blue-shade')} 50%, transparent 50%)`,
+        background: `linear-gradient(${isMobile ? '30deg' : '60deg'}, ${getComputedStyle(document.body).getPropertyValue('--deep-blue-shade')} 50%, transparent 50%)`,
         from: { transform: `translateX(-18%)` },
         transform: `translateX(-10%)`,
         config: { mass: 2, friction: 60 },
@@ -46,4 +50,4 @@ export const AboutMe = ({ className }: BasicProp) => {
             </div>
         </div>
     )
-}
+})

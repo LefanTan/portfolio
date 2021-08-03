@@ -15,7 +15,7 @@ export function isElementInViewporHorizontal(el : HTMLInputElement | null) : boo
 
 export function useScrollListener(el: HTMLInputElement | null, callback : (inElement : boolean) => void) {
     const handler = useCallback(() => {
-        var scrollCallback = window.requestAnimationFrame || function(callback) {setTimeout(callback, 1000/60)}
+        var scrollCallback = window.requestAnimationFrame || function(callback) {setTimeout(callback, 2000/60)}
         scrollCallback(() => {
             // console.log("Left " + el?.getBoundingClientRect().left)
             // console.log("RIGHT " + el?.getBoundingClientRect().right)
