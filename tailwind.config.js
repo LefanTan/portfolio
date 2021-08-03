@@ -19,6 +19,9 @@ module.exports = {
       },
       width:{
         fullscreen: "4000px"
+      },
+      backgroundImage:{
+        'slide': `linear-gradient(-60deg, black 50%, transparent 50%)`
       }
     },
   },

@@ -2,7 +2,7 @@ import { Block } from "./Block";
 import { HiMail } from "react-icons/hi";
 import { AiTwotonePhone, AiOutlineGithub } from "react-icons/ai";
 import { RiLinkedinFill } from "react-icons/ri";
-import { MdNavigateNext } from "react-icons/md";
+import { BsArrowRightShort } from "react-icons/bs";
 import profilePic from "../assets/profilepic.png";
 import { isMobile } from "react-device-detect";
 import { BasicProp } from "./Interfaces";
@@ -10,10 +10,11 @@ import { useSpring, animated, useChain, useSpringRef } from "react-spring";
 import React, { memo, useCallback, useState } from "react";
 import { useScrollListener } from "./Hooks";
 
+/* REACT SPRING BASED */
 export const StartPage = memo(({ className }: BasicProp) => {
 
-    const directToPage = (id : string) => {
-        document.getElementById(id)?.scrollIntoView({behavior: "smooth"})
+    const directToPage = (id: string) => {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
     }
 
     const [mainDom, setMainDom] = useState<HTMLInputElement | null>(null)
@@ -30,9 +31,9 @@ export const StartPage = memo(({ className }: BasicProp) => {
     useScrollListener(mainDom, (isIn) => setTransState(isIn))
 
     const slideRightVal = -120
-    const [slideProps, setSlideButton] = useSpring(() => ({
-        background: `linear-gradient(-60deg, black 50%, transparent 50%)`,
-        right: slideRightVal
+    const [{resume, contact}, setSlide] = useSpring(() => ({
+        resume: slideRightVal,
+        contact: slideRightVal
     }))
 
     const bgRef = useSpringRef()
@@ -58,18 +59,18 @@ export const StartPage = memo(({ className }: BasicProp) => {
         reverse: !transitionState
     })
 
-    const bounceButtonProp = useSpring({
-        from: { transform: `translateX(0px)` },
-        transform: `translateX(5px)`,
-        config: { duration: 200 },
-        delay: 200,
+    const popOutRef = useSpringRef()
+    const popOutProps = useSpring({
+        ref: popOutRef,
+        from: {
+            clipPath: 'circle(0% at 50% 50%)'
+        },
+        clipPath: 'circle(100% at 50% 50%)',
         reset: true,
-        loop: {
-            reverse: true
-        }
-    });
+        reverse: !transitionState
+    })
 
-    useChain([slideOutRef, bgRef], [0, 0.5, 0.75])
+    useChain([slideOutRef, popOutRef, bgRef], [0, 0.5, 1])
 
     return (
         // Start Scene
@@ -91,10 +92,11 @@ export const StartPage = memo(({ className }: BasicProp) => {
                 <div className="bg-transparent w-full h-full lg:w-4/6 p-5 pt-16 pb-16 flex flex-wrap justify-center items-center overflow-hidden z-50">
                     {isMobile && (
                         <Block className="bg-transparent shadow-none flex justify-center items-center">
-                            <img
+                            <animated.img
                                 src={profilePic}
                                 alt="Profile Pic"
                                 className="p-8 filter drop-shadow-md"
+                                style={popOutProps}
                             />
                         </Block>
                     )}
@@ -113,47 +115,60 @@ export const StartPage = memo(({ className }: BasicProp) => {
                                 <p className="small-light-text">780-604-9457</p>
                             </div>
                             <div className="flex items-center mt-auto">
-                                <button className="w-8 h-8 transition duration-200 text-off-white drop-shadow-sm hover:text-off-white-hover transform active:scale-90 ">
-                                    <AiOutlineGithub className="w-full h-full" />
-                                </button>
-                                <button className="ml-3 w-8 h-8 transition duration-200 text-off-white drop-shadow-sm hover:text-off-white-hover transform active:scale-90">
-                                    <RiLinkedinFill className="w-full h-full" />
-                                </button>
+                                <a href="https://github.com/LefanTan" target="_blank" rel="noopener noreferrer">
+                                    <button className="w-8 h-8 transition duration-200 text-off-white drop-shadow-sm hover:text-off-white-hover transform active:scale-90 ">
+                                        <AiOutlineGithub className="w-full h-full" />
+                                    </button>
+                                </a>
+                                <a href="https://www.linkedin.com/in/lefantan/" target="_blank" rel="noopener noreferrer">
+                                    <button className="ml-3 w-8 h-8 transition duration-200 text-off-white drop-shadow-sm hover:text-off-white-hover transform active:scale-90">
+                                        <RiLinkedinFill className="w-full h-full" />
+                                    </button>
+                                </a>
                                 <button className="text-red text-sm w-fit h-7 ml-auto bg-off-white rounded shadow-md transition duration-200 transform active:scale-90 relative overflow-hidden">
                                     <span className="ml-2 mr-2 w-full h-full">Contact Me!</span>
-                                    <animated.div onMouseLeave={() => setSlideButton({ right: slideRightVal })} onMouseEnter={() => setSlideButton({ right: 0 })} style={slideProps} className="w-56 h-full opacity-25 rounded absolute top-0 right-0" />
+                                    <animated.div onMouseLeave={() => setSlide({ contact: slideRightVal })} onMouseEnter={() => setSlide({ contact: 0 })} style={{ right: contact} } className="w-56 h-full opacity-25 rounded absolute top-0 bg-slide" />
                                 </button>
                             </div>
                         </animated.div>
                     </Block>
                     <Block>
                         <animated.div style={slideOutProps} className="bg-dark-green w-full h-full flex flex-col p-4 pl-5 pr-5 shadow-xl">
-                            <div className="relative w-full h-full">
+                            <div className="relative w-full h-full flex flex-col">
                                 <h1 className="small-light-text text-2xl">About Me</h1>
-                                <animated.button onClick={() => directToPage('aboutme')} style={bounceButtonProp} className="transition duration-200 text-off-white absolute bottom-0 -right-2 w-12 h-full lg:h-12 hover:text-off-white-hover">
-                                    <MdNavigateNext className="w-full h-full" />
-                                </animated.button>
+                                <div className="flex items-center mt-auto">
+                                    <button className="text-dark-green text-sm w-fit h-full lg:h-7 bg-off-white rounded shadow-md transition duration-200 transform active:scale-90 overflow-hidden">
+                                        <span className="ml-2 mr-2 w-full h-full">My Resume</span>
+                                        <animated.div onMouseLeave={() => setSlide({ resume: slideRightVal })} onMouseEnter={() => setSlide({ resume: 0 })} style={{ right: resume} } className="w-56 h-full opacity-25 rounded absolute top-0 bg-slide" />
+                                    </button>
+                                    <button onClick={() => directToPage('aboutme')} className="transition duration-200 text-off-white ml-auto w-12 h-full lg:h-10 hover:text-off-white-hover">
+                                        <BsArrowRightShort className="w-full h-full" />
+                                    </button>
+                                </div>
                             </div>
                         </animated.div>
                     </Block>
                     {!isMobile && (
                         <Block className="bg-transparent shadow-none flex justify-center items-center">
-                            <img
+                            <animated.img
                                 src={profilePic}
                                 alt="Profile Pic"
                                 className="p-10 filter drop-shadow-md"
+                                style={popOutProps}
                             />
                         </Block>
                     )}
                     <Block>
                         <animated.div style={slideOutProps} className="bg-off-white w-full h-full flex flex-col p-4 pl-5 pr-5 shadow-xl">
-                            <div className="relative w-full h-full">
+                            <div className="relative w-full h-full flex flex-col">
                                 <h1 className="small-light-text text-dark-grey text-2xl">
                                     Projects I've done
                                 </h1>
-                                <animated.button style={bounceButtonProp} className="transition duration-200 text-dark-grey absolute bottom-0 -right-2 w-12 h-full lg:h-12 hover:text-dark-grey-hover">
-                                    <MdNavigateNext className="w-full h-full" />
-                                </animated.button>
+                                <div className="flex items-center mt-auto">
+                                    <button className="transition duration-200 text-dark-grey ml-auto w-12 h-full lg:h-10 hover:text-dark-grey-hover">
+                                        <BsArrowRightShort className="w-full h-full" />
+                                    </button>
+                                </div>
                             </div>
                         </animated.div>
                     </Block>
