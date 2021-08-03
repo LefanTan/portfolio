@@ -22,6 +22,15 @@ module.exports = {
       },
       backgroundImage:{
         'slide': `linear-gradient(-60deg, black 50%, transparent 50%)`
+      },
+      animation:{
+        wiggle: 'wiggle 1s linear infinite alternate'
+      },
+      keyframes:{
+        wiggle :{
+          '0%': {transform : 'translateX(0) transformZ(0)'},
+          '100%': {transform: 'translateX(5px)'}
+        }
       }
     },
   },

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { AboutMe } from "./components/AboutMe";
 import { StartPage } from "./components/StartPage";
 

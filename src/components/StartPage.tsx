@@ -7,7 +7,7 @@ import profilePic from "../assets/profilepic.png";
 import { isMobile } from "react-device-detect";
 import { BasicProp } from "./Interfaces";
 import { useSpring, animated, useChain, useSpringRef } from "react-spring";
-import React, { memo, useCallback, useState } from "react";
+import { memo, useCallback, useState } from "react";
 import { useScrollListener } from "./Hooks";
 
 /* REACT SPRING BASED */
@@ -141,7 +141,7 @@ export const StartPage = memo(({ className }: BasicProp) => {
                                         <span className="ml-2 mr-2 w-full h-full">My Resume</span>
                                         <animated.div onMouseLeave={() => setSlide({ resume: slideRightVal })} onMouseEnter={() => setSlide({ resume: 0 })} style={{ right: resume} } className="w-56 h-full opacity-25 rounded absolute top-0 bg-slide" />
                                     </button>
-                                    <button onClick={() => directToPage('aboutme')} className="transition duration-200 text-off-white ml-auto w-12 h-full lg:h-10 hover:text-off-white-hover">
+                                    <button onClick={() => directToPage('aboutme')} className="transition duration-200 text-off-white ml-auto w-12 h-full lg:h-9 hover:text-off-white-hover">
                                         <BsArrowRightShort className="w-full h-full" />
                                     </button>
                                 </div>
@@ -165,7 +165,7 @@ export const StartPage = memo(({ className }: BasicProp) => {
                                     Projects I've done
                                 </h1>
                                 <div className="flex items-center mt-auto">
-                                    <button className="transition duration-200 text-dark-grey ml-auto w-12 h-full lg:h-10 hover:text-dark-grey-hover">
+                                    <button className="transition duration-200 text-dark-grey ml-auto w-12 h-full lg:h-9 hover:text-dark-grey-hover">
                                         <BsArrowRightShort className="w-full h-full" />
                                     </button>
                                 </div>
