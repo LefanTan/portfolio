@@ -12,13 +12,37 @@ module.exports = {
         "dark-green": "var(--dark-green)",
         "dark-grey": "var(--dark-grey)",
         "dark-grey-hover": "var(--dark-grey-hover)",
-        "dark-grey-active": "var(--dark-grey-active)"
+        "dark-grey-active": "var(--dark-grey-active)",
+        "antique-white": "var(--antique-white)",
+        "floral-white": "var(--floral-white)"
+      },
+      fill: {
+        'transparent': 'transparent',
+        "antique-white": "var(--antique-white)",
+      },
+      stroke:{
+        'off-white': "var(--off-white)",
+        "antique-white": "var(--antique-white)",
+      },
+      strokeWidth:{
+        '3': '40'
       },
       fontFamily: {
         main: ['Montserrat']
       },
       width:{
-        fullscreen: "4000px"
+        fullscreen: "4000px",
+        fit: 'fit-content'
+      },
+      height:{
+        fit: 'fit-content',
+        '120': '120%',
+        '1/2': '50%',
+        '55': '55%',
+        twoscreen: '200vh'
+      },
+      maxHeight:{
+        '1/2': '50%',
       },
       backgroundImage:{
         'slide': `linear-gradient(-60deg, black 50%, transparent 50%)`
@@ -31,6 +55,16 @@ module.exports = {
           '0%': {transform : 'translateX(0) transformZ(0)'},
           '100%': {transform: 'translateX(5px)'}
         }
+      },
+      boxShadow:{
+        hard: '0.1rem 0.2rem 5px rgba(0, 0, 0, 0.35)'
+      },
+      minWidth:{
+        'screen' : '100vw',
+        'twoscreen': '200vw'
+      },
+      margin:{
+        auto: 'auto'
       }
     },
   },

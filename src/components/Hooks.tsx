@@ -1,15 +1,14 @@
 import { useCallback, useEffect } from "react"
 
 export function isElementInViewporHorizontal(el : HTMLInputElement | null) : boolean { 
-    if(el === null){
-        console.error(`el param is null`)
-        return false
-    }
+    if(el === null) return false
     
     var elRect = el.getBoundingClientRect()
+    var elWidth = elRect.width
+
     return(
-        ((elRect.left <= 0 && elRect.right >= window.innerWidth / 2 && elRect.left >= -window.innerWidth / 2) ||
-         (elRect.left > 0 && elRect.right <= window.innerWidth + window.innerWidth / 2 && elRect.left <= window.innerWidth / 2))
+        ((elRect.left <= 0 && elRect.right >= elWidth / 2 && elRect.left >= -elWidth / 2) ||
+         (elRect.left > 0 && elRect.right <= window.innerHeight * 1.5 && elRect.left <= window.innerHeight / 2))
     )
 }
 
@@ -19,6 +18,7 @@ export function useScrollListener(el: HTMLInputElement | null, callback : (inEle
         scrollCallback(() => {
             // console.log("Left " + el?.getBoundingClientRect().left)
             // console.log("RIGHT " + el?.getBoundingClientRect().right)
+            // console.log( el?.getBoundingClientRect().width)
             return callback(isElementInViewporHorizontal(el))
         })
     }, [callback, el])

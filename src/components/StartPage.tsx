@@ -8,14 +8,11 @@ import { isMobile } from "react-device-detect";
 import { BasicProp } from "./Interfaces";
 import { useSpring, animated, useChain, useSpringRef } from "react-spring";
 import { memo, useCallback, useState } from "react";
+import { directToPage } from "../components/helpers";
 import { useScrollListener } from "./Hooks";
 
 /* REACT SPRING BASED */
 export const StartPage = memo(({ className }: BasicProp) => {
-
-    const directToPage = (id: string) => {
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
-    }
 
     const [mainDom, setMainDom] = useState<HTMLInputElement | null>(null)
     // True means start transition
@@ -39,9 +36,9 @@ export const StartPage = memo(({ className }: BasicProp) => {
     const bgRef = useSpringRef()
     const { blueBg, whiteBg } = useSpring({
         ref: bgRef,
-        from: { blueBg: `translateX(55%)`, whiteBg: `translateX(-10%)` },
+        from: { blueBg: `translateX(45%)`, whiteBg: `translateX(-10%)` },
         whiteBg: `translateX(-20%)`,
-        blueBg: `translateX(40%)`,
+        blueBg: `translateX(37.5%)`,
         zIndex: 20,
         config: { mass: 1, friction: 60 },
         reset: true,
@@ -66,6 +63,7 @@ export const StartPage = memo(({ className }: BasicProp) => {
             clipPath: 'circle(0% at 50% 50%)'
         },
         clipPath: 'circle(100% at 50% 50%)',
+        config: {duration : 850},
         reset: true,
         reverse: !transitionState
     })
@@ -89,19 +87,19 @@ export const StartPage = memo(({ className }: BasicProp) => {
                         transform: whiteBg
                     }}
                     className="absolute top-0 bottom-0 -left-1/2 -right-1/2" />
-                <div className="bg-transparent w-full h-full lg:w-4/6 p-5 pt-16 pb-16 flex flex-wrap justify-center items-center overflow-hidden z-50">
+                <div className="bg-transparent w-full h-full lg:w-4/6 p-5 pt-16 pb-16 flex flex-wrap justify-center items-center overflow-y-auto z-50">
                     {isMobile && (
-                        <Block className="bg-transparent shadow-none flex justify-center items-center">
+                        <Block className="bg-transparent shadow-none flex justify-center items-center w-24">
                             <animated.img
                                 src={profilePic}
                                 alt="Profile Pic"
-                                className="p-8 filter drop-shadow-md"
+                                className="p-8 filter drop-shadow-xl"
                                 style={popOutProps}
                             />
                         </Block>
                     )}
                     <Block>
-                        <animated.div style={slideOutProps} className="bg-red w-full h-full flex flex-col p-4 pl-5 pr-5 shadow-xl">
+                        <animated.div style={slideOutProps} className="bg-red w-full h-full flex flex-col p-4 pl-5 pr-5 shadow-hard">
                             <h1 className="small-light-text text-2xl mb-2">
                                 Lefan Tan (Jia Hui)
                             </h1>
@@ -133,7 +131,7 @@ export const StartPage = memo(({ className }: BasicProp) => {
                         </animated.div>
                     </Block>
                     <Block>
-                        <animated.div style={slideOutProps} className="bg-dark-green w-full h-full flex flex-col p-4 pl-5 pr-5 shadow-xl">
+                        <animated.div style={slideOutProps} className="bg-dark-green w-full h-full flex flex-col p-4 pl-5 pr-5 shadow-hard">
                             <div className="relative w-full h-full flex flex-col">
                                 <h1 className="small-light-text text-2xl">About Me</h1>
                                 <div className="flex items-center mt-auto">
@@ -141,7 +139,7 @@ export const StartPage = memo(({ className }: BasicProp) => {
                                         <span className="ml-2 mr-2 w-full h-full">My Resume</span>
                                         <animated.div onMouseLeave={() => setSlide({ resume: slideRightVal })} onMouseEnter={() => setSlide({ resume: 0 })} style={{ right: resume} } className="w-56 h-full opacity-25 rounded absolute top-0 bg-slide" />
                                     </button>
-                                    <button onClick={() => directToPage('aboutme')} className="transition duration-200 text-off-white ml-auto w-12 h-full lg:h-9 hover:text-off-white-hover">
+                                    <button onClick={() => directToPage('aboutme')} className="transition duration-200 text-off-white ml-auto w-12 h-full lg:h-9 hover:text-off-white-hover transform active:scale-90">
                                         <BsArrowRightShort className="w-full h-full" />
                                     </button>
                                 </div>
@@ -153,19 +151,19 @@ export const StartPage = memo(({ className }: BasicProp) => {
                             <animated.img
                                 src={profilePic}
                                 alt="Profile Pic"
-                                className="p-10 filter drop-shadow-md"
+                                className="p-10 filter drop-shadow-xl"
                                 style={popOutProps}
                             />
                         </Block>
                     )}
                     <Block>
-                        <animated.div style={slideOutProps} className="bg-off-white w-full h-full flex flex-col p-4 pl-5 pr-5 shadow-xl">
+                        <animated.div style={slideOutProps} className="bg-off-white w-full h-full flex flex-col p-4 pl-5 pr-5 shadow-hard">
                             <div className="relative w-full h-full flex flex-col">
                                 <h1 className="small-light-text text-dark-grey text-2xl">
                                     Projects I've done
                                 </h1>
                                 <div className="flex items-center mt-auto">
-                                    <button className="transition duration-200 text-dark-grey ml-auto w-12 h-full lg:h-9 hover:text-dark-grey-hover">
+                                    <button onClick={() => directToPage('myprojects')} className="transition duration-200 text-dark-grey ml-auto w-12 h-full lg:h-9 hover:text-dark-grey-hover transform active:scale-90">
                                         <BsArrowRightShort className="w-full h-full" />
                                     </button>
                                 </div>
