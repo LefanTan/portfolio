@@ -36,10 +36,10 @@ module.exports = {
       },
       height:{
         fit: 'fit-content',
-        '120': '120%',
+        'pgpage': 'calc(100vh - 3rem)',
         '1/2': '50%',
         '55': '55%',
-        twoscreen: '200vh'
+        twoscreen: '200vh',
       },
       maxHeight:{
         '1/2': '50%',

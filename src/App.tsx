@@ -1,6 +1,7 @@
 import React, { useRef } from "react";
 import { AboutMe } from "./components/AboutMe";
 import { ProjectPage } from "./components/ProjectPage";
+import { isMobile } from "react-device-detect";
 import { StartPage } from "./components/StartPage";
 
 function App() {
@@ -23,7 +24,12 @@ function App() {
     <main ref={mainRef} onWheel={horizontalScrolling} className="bg-transparent w-screen h-screen p-0 whitespace-nowrap flex overflow-x-scroll overflow-y-hidden snap snap-x snap-mandatory">
       <StartPage className="inline-block snap snap-center" />
       <AboutMe className="inline-block snap snap-center" />
-      <ProjectPage className="inline-block snap snap-start" />
+      {!isMobile && 
+        <ProjectPage className="inline-block snap snap-start" />
+      }
+      {isMobile && 
+        <ProjectPage className="inline-block snap snap-start" />
+      }
     </main>
   );
 }
