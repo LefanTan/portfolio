@@ -8,7 +8,7 @@ export function isElementInViewporHorizontal(el : HTMLInputElement | null) : boo
 
     return(
         ((elRect.left <= 0 && elRect.right >= elWidth / 2 && elRect.left >= -elWidth / 2) ||
-         (elRect.left > 0 && elRect.right <= window.innerHeight * 1.5 && elRect.left <= window.innerHeight / 2))
+         (elRect.left > 0 && elRect.right <= window.innerWidth * 1.5 && elRect.left <= window.innerWidth / 2))
     )
 }
 

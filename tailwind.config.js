@@ -41,6 +41,10 @@ module.exports = {
         '55': '55%',
         twoscreen: '200vh',
       },
+      minHeight:{
+        fit: 'fit-content',
+        '2/5': '40%'
+      },
       maxHeight:{
         '1/2': '50%',
       },

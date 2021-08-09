@@ -4,7 +4,9 @@ import { isMobile } from "react-device-detect";
 import { useScrollListener } from "./Hooks";
 import { BasicProp } from "./Interfaces";
 import { BsArrowRightShort, BsArrowLeftShort } from "react-icons/bs";
+import { AiFillHome } from "react-icons/ai"
 import { Projects } from "./Projects";
+import { directToPage } from "./helpers";
 
 export const projectPageTypes = ['experience', 'work', 'work ii', 'work iii']
 export const ProjectPage = memo(({ className }: BasicProp) => {
@@ -29,20 +31,21 @@ export const ProjectPage = memo(({ className }: BasicProp) => {
     useScrollListener(mainDom, (isIn) => setTransState(isIn))
     return (
         <div id='myprojects' ref={refHandler} className={`${className}`}>
-            {isMobile && 
-            <nav className="bg-off-white w-full h-12 py-2 px-2 flex items-center z-50">
-                <h1 className="font-main font-semibold text-dark-grey text-xl mr-2">My Projects</h1>
-                {projectPageTypes.map((type: string) =>
-                    <button onClick={() => { setCurrentPg(type); }} className={`font-main text-sm
+            {isMobile &&
+                <nav className="bg-off-white w-full h-12 py-2 px-2 flex items-center z-50">
+                    <h1 className="font-main font-semibold text-dark-grey text-xl mr-2">My Projects</h1>
+                    {projectPageTypes.map((type: string) =>
+                        <button onClick={() => { setCurrentPg(type); }} className={`font-main text-sm
                     ${currentPage === type ? `text-off-white bg-dark-grey` : 'text-dark-grey bg-transparent'} duration-100 rounded-md px-1 m-0.5 transform hover:scale-110`}>
-                        {type}</button>
-                )}
-            </nav>}
+                            {type}</button>
+                    )}
+                </nav>}
             <div className="bg-deep-blue w-screen h-pgpage lg:h-screen flex justify-center items-center overflow-x-hidden overflow-y-auto lg:overflow-y-hidden relative z-0">
-                <motion.div
+                {!isMobile && <motion.div
                     animate={{ x: transition ? '35%' : '15%' }} transition={{ type: "spring", duration: 2, delay: 1 }}
                     style={{ background: `linear-gradient(-160deg, ${getComputedStyle(document.body).getPropertyValue('--deep-blue-shade')} 50%, transparent 50%)` }}
                     className="absolute top-0 bottom-0 -left-1/2 -right-full lg:-right-1/2 drop-shadow-lg z-0" />
+                }
                 <div className="w-screen h-full relative flex justify-center items-center z-10">
                     {!isMobile && <motion.div animate={{ opacity: transition ? 1 : 0 }}
                         className="bg-off-white shadow-lg absolute h-fit w-fit z-20 flex flex-col justify-center items-center z-40 px-2 py-2">
@@ -58,9 +61,12 @@ export const ProjectPage = memo(({ className }: BasicProp) => {
                                     {type}</button>
                             )}
                         </motion.div>
-                        <motion.div className="w-full h-fit flex justify-center">
+                        <motion.div className="w-full h-fit flex justify-center relative">
                             <button onClick={() => navigate(-1)} className="text-dark-grey h-8 transition duration-100 hover:text-dark-grey-hover transform active:scale-90"><BsArrowLeftShort className="w-full h-full" /></button>
                             <button onClick={() => navigate(1)} className="text-dark-grey h-8 transition duration-100 hover:text-dark-grey-hover transform active:scale-90"><BsArrowRightShort className="w-full h-full" /></button>
+                            <button onClick={() => {directToPage('startpage'); document.body.style.zoom = "100%"}} className="absolute right-0 text-dark-grey h-7 transition duration-100 hover:text-dark-grey-hover transform active:scale-90">
+                                <AiFillHome className="w-full h-full"/>
+                            </button>
                         </motion.div>
                     </motion.div>}
 

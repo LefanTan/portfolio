@@ -13,7 +13,7 @@ function App() {
     // e.deltaX being -0 means it is a scroll wheel (though track pad can have -0 once in while)
     (e.deltaX === 0 && prevDeltaX === 0) && mainRef.current?.scrollTo({
       top: 0,
-      left: (scrollPosition ?? 0) + e.deltaY * 5,
+      left: (scrollPosition ?? 0) + e.deltaY * 7.5,
       behavior: 'smooth'
     })
 
