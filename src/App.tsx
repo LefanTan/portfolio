@@ -1,8 +1,23 @@
 import React, { useRef } from "react";
 import { AboutMe } from "./components/AboutMe";
 import { ProjectPage } from "./components/ProjectPage";
-import { isMobile } from "react-device-detect";
 import { StartPage } from "./components/StartPage";
+import { ContactMe } from "./components/ContactMe";
+import { AiFillHome } from "react-icons/ai";
+import { directToPage } from "./components/helpers";
+import { motion } from "framer-motion";
+import { Props } from "framer-motion/types/types";
+
+export const HomeButton = (props : Props) => {
+  return (
+    <motion.button
+      animate={{ opacity: props['trigger'] ? 1 : 0 }}
+      transition={{duration: 1}}
+      onClick={() => directToPage('startpage')} className="absolute text-off-white w-8 h-8 bottom-10 right-5 z-40 hover:text-off-white-hover transform active:scale-90">
+      <AiFillHome className="w-full h-full" />
+    </motion.button>
+  )
+}
 
 function App() {
   const mainRef = useRef<HTMLInputElement | null>(null)
@@ -24,12 +39,8 @@ function App() {
     <main ref={mainRef} onWheel={horizontalScrolling} className="bg-transparent w-screen h-screen p-0 whitespace-nowrap flex overflow-x-scroll overflow-y-hidden snap snap-x snap-mandatory">
       <StartPage className="inline-block snap snap-center" />
       <AboutMe className="inline-block snap snap-center" />
-      {!isMobile && 
-        <ProjectPage className="inline-block snap snap-start" />
-      }
-      {isMobile && 
-        <ProjectPage className="inline-block snap snap-start" />
-      }
+      <ProjectPage className="inline-block snap snap-start" />
+      <ContactMe className="inline-block snap snap-start" />
     </main>
   );
 }

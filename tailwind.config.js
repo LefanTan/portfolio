@@ -69,6 +69,9 @@ module.exports = {
       },
       margin:{
         auto: 'auto'
+      },
+      borderColor:{
+        'off-white-active': 'var(--off-white-active)'
       }
     },
   },

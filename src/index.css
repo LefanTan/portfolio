@@ -27,6 +27,9 @@ code {
   .small-light-text{
     @apply font-main font-light text-sm text-off-white
   }
+  .input{
+    @apply font-main text-dark-grey bg-off-white focus:outline-none focus:border-off-white-active border-2
+  }
 }
 
 :root{

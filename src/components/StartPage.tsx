@@ -36,9 +36,9 @@ export const StartPage = memo(({ className }: BasicProp) => {
     const bgRef = useSpringRef()
     const { blueBg, whiteBg } = useSpring({
         ref: bgRef,
-        from: { blueBg: `translateX(45%)`, whiteBg: `translateX(-10%)` },
-        whiteBg: `translateX(-20%)`,
-        blueBg: `translateX(37.5%)`,
+        from: { blueBg: `translateX(40%)`, whiteBg: `translateX(-10%)` },
+        whiteBg: `translateX(-30%)`,
+        blueBg: `translateX(45%)`,
         zIndex: 20,
         config: { mass: 1, friction: 60 },
         reset: true,
@@ -87,19 +87,16 @@ export const StartPage = memo(({ className }: BasicProp) => {
                         transform: whiteBg
                     }}
                     className="absolute top-0 bottom-0 -left-1/2 -right-1/2" />
-                <div className="bg-transparent w-full h-full lg:w-4/6 p-5 pt-16 pb-16 flex flex-col justify-center items-center overflow-y-auto z-50">
-                    {isMobile && (
-                        <Block className="bg-transparent shadow-none flex justify-center items-center mb-5">
-                            <animated.img
+                <div className="bg-transparent w-full h-full p-5 pt-16 pb-16 flex flex-col lg:flex-row justify-center items-center overflow-y-hidden z-50">
+                    {(
+                        <animated.img
                                 src={profilePic}
                                 alt="Profile Pic"
-                                className="p-8 filter drop-shadow-xl"
-                                style={popOutProps}
-                            />
-                        </Block>
+                                className="p-8 w-full lg:w-1/4 filter drop-shadow-xl"
+                                style={popOutProps}/>
                     )}
-                    <div className="flex flex-col lg:flex-row w-10/12 h-fit justify-center items-center lg:mb-5">
-                        <Block className="mr-5 ml-5">
+                    <div className="flex flex-col h-fit w-full lg:w-1/4 justify-center items-center m-5">
+                        <Block>
                             <animated.div style={slideOutProps} className="bg-red w-full h-full flex flex-col p-4 pl-5 pr-5 shadow-hard">
                                 <h1 className="small-light-text text-2xl mb-2">
                                     Lefan Tan (Jia Hui)
@@ -124,7 +121,7 @@ export const StartPage = memo(({ className }: BasicProp) => {
                                             <RiLinkedinFill className="w-full h-full" />
                                         </button>
                                     </a>
-                                    <button className="text-red text-sm w-fit h-7 ml-auto bg-off-white rounded shadow-md transition duration-200 transform active:scale-90 relative overflow-hidden">
+                                    <button onClick={() => directToPage('contactme')} className="text-red text-sm w-fit h-7 ml-auto bg-off-white rounded shadow-md transition duration-200 transform active:scale-90 relative overflow-hidden">
                                         <span className="ml-2 mr-2 w-full h-full">Contact Me!</span>
                                         <animated.div onMouseLeave={() => setSlide({ contact: slideRightVal })} onMouseEnter={() => setSlide({ contact: 0 })} style={{ right: contact }} className="w-56 h-full opacity-25 rounded absolute top-0 bg-slide" />
                                     </button>
@@ -147,21 +144,9 @@ export const StartPage = memo(({ className }: BasicProp) => {
                                 </div>
                             </animated.div>
                         </Block>
-                    </div>
-                    <div className="flex flex-col lg:flex-row justify-center items-center w-10/12 h-fit">
-                        {!isMobile && (
-                            <Block className="flex justify-center items-center ml-5 mr-5">
-                                <animated.img
-                                    src={profilePic}
-                                    alt="Profile Pic"
-                                    className="w-1/2 filter drop-shadow-xl"
-                                    style={popOutProps}
-                                />
-                            </Block>
-                        )}
-                        <Block>
-                            <animated.div style={slideOutProps} className="bg-off-white w-full h-full flex flex-col p-4 pl-5 pr-5 shadow-hard">
-                                <div className="relative w-full h-full flex flex-col">
+                        <Block className="flex justify-center items-center">
+                            <animated.div style={slideOutProps} className="bg-off-white w-full h-fit flex flex-col p-4 pl-5 pr-5 shadow-hard">
+                                <div className="relative w-full h-fit flex flex-col">
                                     <h1 className="small-light-text text-dark-grey text-2xl">
                                         Projects I've done
                                     </h1>
@@ -174,6 +159,9 @@ export const StartPage = memo(({ className }: BasicProp) => {
                             </animated.div>
                         </Block>
                     </div>
+                    {/* <div className="flex flex-col lg:flex-row justify-center items-center w-10/12 h-fit">
+                      
+                    </div> */}
 
                 </div>
             </div>
