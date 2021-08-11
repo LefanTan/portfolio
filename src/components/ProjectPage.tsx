@@ -69,7 +69,7 @@ export const ProjectPage = memo(({ className }: BasicProp) => {
             </nav>
             <div className="bg-deep-blue w-screen h-pgpage lg:h-screen flex justify-center items-center overflow-x-hidden overflow-y-auto lg:overflow-y-hidden relative z-0">
                 {!isMobile && <motion.div
-                    animate={{ x: transition ? '35%' : '15%' }} transition={{ type: "spring", duration: 2, delay: 1 }}
+                    animate={{ x: transition ? '10%' : '100%' }} transition={{ type: "spring", duration: 2, delay: 1 }}
                     style={{ background: `linear-gradient(-160deg, ${getComputedStyle(document.body).getPropertyValue('--deep-blue-shade')} 50%, transparent 50%)` }}
                     className="absolute top-0 bottom-0 -left-1/2 -right-full lg:-right-1/2 drop-shadow-lg z-0" />
                 }
