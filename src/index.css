@@ -28,7 +28,13 @@ code {
     @apply font-main font-light text-sm text-off-white
   }
   .input{
-    @apply font-main text-dark-grey bg-off-white focus:outline-none focus:border-off-white-active border-2
+    @apply font-main text-dark-grey text-sm bg-off-white focus:outline-none focus:border-off-white-active border-2
+  }
+  .about-me{
+    @apply text-dark-grey-active h-fit font-main font-normal text-xs whitespace-pre-line
+  }
+  .projects-container{
+    @apply w-screen h-screen z-30 pt-3 pl-5 pr-5 pb-10 flex flex-col lg:flex-row justify-between lg:justify-evenly items-center lg:items-end
   }
 }
 

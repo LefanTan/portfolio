@@ -9,6 +9,7 @@ import { BasicProp } from "./Interfaces";
 import { useSpring, animated, useChain, useSpringRef } from "react-spring";
 import { memo, useCallback, useState } from "react";
 import { directToPage } from "../components/helpers";
+import { Link } from 'react-router-dom';
 import { useScrollListener } from "./Hooks";
 
 /* REACT SPRING BASED */
@@ -37,7 +38,7 @@ export const StartPage = memo(({ className }: BasicProp) => {
     const { blueBg, whiteBg } = useSpring({
         ref: bgRef,
         from: { blueBg: `translateX(40%)`, whiteBg: `translateX(-10%)` },
-        whiteBg: `translateX(-30%)`,
+        whiteBg: `translateX(-20%)`,
         blueBg: `translateX(45%)`,
         zIndex: 20,
         config: { mass: 1, friction: 60 },
@@ -90,15 +91,15 @@ export const StartPage = memo(({ className }: BasicProp) => {
                 <div className="bg-transparent w-full h-full p-5 pt-16 pb-16 flex flex-col lg:flex-row justify-center items-center overflow-y-hidden z-50">
                     {(
                         <animated.img
-                                src={profilePic}
-                                alt="Profile Pic"
-                                className="p-8 w-full lg:w-1/4 filter drop-shadow-xl"
-                                style={popOutProps}/>
+                            src={profilePic}
+                            alt="Profile Pic"
+                            className="p-8 w-full lg:w-1/4 filter drop-shadow-xl"
+                            style={popOutProps} />
                     )}
-                    <div className="flex flex-col h-fit w-full lg:w-1/4 justify-center items-center m-5">
+                    <div className="flex flex-col h-fit w-full lg:w-1/3 justify-center items-center m-5">
                         <Block>
                             <animated.div style={slideOutProps} className="bg-red w-full h-full flex flex-col p-4 pl-5 pr-5 shadow-hard">
-                                <h1 className="small-light-text text-2xl mb-2">
+                                <h1 className="small-light-text text-2xl mb-1">
                                     Lefan Tan (Jia Hui)
                                 </h1>
                                 <h2 className="small-light-text font-bold">Front-end Developer</h2>
@@ -106,11 +107,11 @@ export const StartPage = memo(({ className }: BasicProp) => {
                                     <HiMail className="text-off-white mr-2" />
                                     <p className="small-light-text">lefantan@hotmail.com</p>
                                 </div>
-                                <div className="flex items-center mb-3">
+                                <div className="flex items-center mb-1">
                                     <AiTwotonePhone className="text-off-white mr-2" />
                                     <p className="small-light-text">780-604-9457</p>
                                 </div>
-                                <div className="flex items-center mt-auto">
+                                <div className="flex items-center">
                                     <a href="https://github.com/LefanTan" target="_blank" rel="noopener noreferrer">
                                         <button className="w-8 h-8 transition duration-200 text-off-white drop-shadow-sm hover:text-off-white-hover transform active:scale-90 ">
                                             <AiOutlineGithub className="w-full h-full" />
@@ -133,10 +134,12 @@ export const StartPage = memo(({ className }: BasicProp) => {
                                 <div className="relative w-full h-full flex flex-col">
                                     <h1 className="small-light-text text-2xl">About Me</h1>
                                     <div className="flex items-center mt-auto">
-                                        <button className="text-dark-green text-sm w-fit h-3/5 lg:h-7 bg-off-white rounded shadow-md transition duration-200 transform active:scale-90 overflow-hidden">
-                                            <span className="ml-2 mr-2 w-full h-full">My Resume</span>
-                                            <animated.div onMouseLeave={() => setSlide({ resume: slideRightVal })} onMouseEnter={() => setSlide({ resume: 0 })} style={{ right: resume }} className="w-56 h-full opacity-25 rounded absolute top-0 bg-slide" />
-                                        </button>
+                                        <Link to="/resume" className="h-full flex items-center">
+                                            <button className="text-dark-green text-sm w-fit h-7 bg-off-white rounded shadow-md transition duration-200 transform active:scale-90 overflow-hidden">
+                                                <span className="ml-2 mr-2 w-full h-full">My Resume</span>
+                                                <animated.div onMouseLeave={() => setSlide({ resume: slideRightVal })} onMouseEnter={() => setSlide({ resume: 0 })} style={{ right: resume }} className="w-56 h-full opacity-25 rounded absolute top-0 bg-slide" />
+                                            </button>
+                                        </Link>
                                         <button onClick={() => directToPage('aboutme')} className="transition duration-200 text-off-white ml-auto w-12 h-full lg:h-9 hover:text-off-white-hover transform active:scale-90">
                                             <BsArrowRightShort className="w-full h-full" />
                                         </button>
