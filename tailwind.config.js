@@ -14,7 +14,8 @@ module.exports = {
         "dark-grey-hover": "var(--dark-grey-hover)",
         "dark-grey-active": "var(--dark-grey-active)",
         "antique-white": "var(--antique-white)",
-        "floral-white": "var(--floral-white)"
+        "floral-white": "var(--floral-white)",
+        "ecru": "var(--ecru)"
       },
       fill: {
         'transparent': 'transparent',

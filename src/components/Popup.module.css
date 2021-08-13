@@ -37,7 +37,7 @@
     justify-content: center;
     align-items: center;
 
-    color: var(--main-color);
+    color: var(--dark-grey);
     background-color: transparent;
     border: 0px;
     padding: 0%;
@@ -48,11 +48,11 @@
 
 .closeButton:hover{
     transition: 200ms;
-    color: var(--main-color-hover);
-    transform: scale(1.3);
+    color: var(--dark-grey-hover);
+    transform: scale(1.2);
 }
 .closeButton:active{
     transition: 200ms;
-    color: var(--main-color-hover);
+    color: var(--dark-grey-active);
     transform: scale(1);
 }

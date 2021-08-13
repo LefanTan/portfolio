@@ -59,25 +59,26 @@ export const ProjectPage = memo(({ className }: BasicProp) => {
 
     return (
         <div id='myprojects' ref={refHandler} className={`${className}`}>
-            <nav className="bg-off-white w-full h-fit px-3 py-2 flex items-center z-50">
+            <motion.div 
+            className="bg-off-white w-full h-fit px-3 py-2 flex items-center z-50">
                 <h1 className="font-main font-semibold text-dark-grey text-xl mr-2">My Projects</h1>
                 {projectPageTypes.map((type: string, index: number) =>
                     <button key={index} onClick={() => { setCurrentPg(type); }} className={`font-main text-sm
                     ${currentPage === type ? `text-off-white bg-dark-grey` : 'text-dark-grey bg-transparent'} duration-100 rounded-md px-1 m-0.5 transform hover:scale-110`}>
                         {type}</button>
                 )}
-            </nav>
+            </motion.div>
             <div className="bg-deep-blue w-screen h-pgpage lg:h-screen flex justify-center items-center overflow-x-hidden overflow-y-auto lg:overflow-y-hidden relative z-0">
                 {!isMobile && <motion.div
-                    animate={{ x: transition ? '10%' : '100%' }} transition={{ type: "spring", duration: 2, delay: 1 }}
+                    animate={{ x: transition ? '100%' : '10%' }} transition={{ type: "spring", duration: 2, delay: 1 }}
                     style={{ background: `linear-gradient(-160deg, ${getComputedStyle(document.body).getPropertyValue('--deep-blue-shade')} 50%, transparent 50%)` }}
                     className="absolute top-0 bottom-0 -left-1/2 -right-full lg:-right-1/2 drop-shadow-lg z-0" />
                 }
                 <HomeButton trigger={transition} position="lg:bottom-18 right-5"/>
                 <div className="w-full h-full relative flex justify-center items-center z-10 overflow-x-hidden">
                     {/* EXPERIENCE PAGE 1 */}
-                    {currentPage === projectPageTypes[0] && <div className="projects-container">
-                        {/* {menu} */}
+                    {currentPage === projectPageTypes[0] && <div className="flex items-center justify-center">
+                        <h1 className="font-main text-3xl text-off-white">TBD</h1>
                     </div>}
                     {/* WORK PAGE 1 */}
                     {currentPage === projectPageTypes[1] && <div className="projects-container">

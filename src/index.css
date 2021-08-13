@@ -24,18 +24,61 @@ code {
 }
 
 @layer components{
-  .small-light-text{
-    @apply font-main font-light text-sm text-off-white
-  }
-  .input{
-    @apply font-main text-dark-grey text-sm bg-off-white focus:outline-none focus:border-off-white-active border-2
-  }
-  .about-me{
-    @apply text-dark-grey-active h-fit font-main font-normal text-xs whitespace-pre-line
-  }
-  .projects-container{
-    @apply w-screen h-screen z-30 pt-3 pl-5 pr-5 pb-10 flex flex-col lg:flex-row justify-between lg:justify-evenly items-center lg:items-end
-  }
+    .small-light-text{
+        @apply font-main font-light text-sm text-off-white
+    }
+    .input{
+        @apply font-main text-dark-grey text-sm bg-off-white focus:outline-none focus:border-off-white-active border-2
+    }
+    .about-me{
+        @apply text-dark-grey-active h-fit font-main font-normal text-xs whitespace-pre-line
+    }
+    .projects-container{
+        @apply w-screen h-screen z-30 pt-3 pl-5 pr-5 pb-10 flex flex-col lg:flex-row justify-between lg:justify-evenly items-center lg:items-end
+    }
+    /* Resume */
+    .languages {
+        @apply font-main text-dark-green bg-floral-white rounded-lg shadow-md px-2 py-1 font-semibold text-lg m-0.5
+    }
+    .h1 {
+        @apply font-main text-dark-green font-bold text-3xl border-b-2 border-green-800 mb-3
+    }
+    .title {
+        @apply font-main font-semibold text-dark-grey text-lg
+    }
+    .title-extra {
+        @apply font-main font-normal text-dark-grey text-lg ml-auto
+    }
+    .description {
+        @apply font-main font-normal text-dark-grey text-sm
+    }
+    .list {
+        @apply font-main text-xs font-medium text-dark-grey list-disc pl-5 mt-2
+    }
+}
+
+@media print {
+    .resume {
+        height: 100% !important;
+        width: 100% !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        -webkit-print-color-adjust: exact !important;
+    }
+    @page {
+        size: A4;
+    }
+}
+
+.resume {
+    display: flex;
+    padding: 1.25rem;
+    width: 21cm;
+    height: 29.7cm;
+    background-color: white;
 }
 
 :root{
@@ -44,10 +87,10 @@ code {
   --deep-blue-shade2x: #456a7b;
   --red: #b8473b;
   --antique-white: #ecd6ba;
-  --floral-white: #FFFAEF;
+  --floral-white: #f7f7f7;
   --off-white: #f3f3f3;
   --off-white-hover: #c1c1c1;
-  --off-white-active: #8e8e8e;
+  --off-white-active: #695858;
   --dark-green: #26483f;
   --dark-grey: #4f4f4f;
   --dark-grey-hover: #8c8c8c;
