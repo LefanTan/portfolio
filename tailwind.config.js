@@ -17,6 +17,9 @@ module.exports = {
         "floral-white": "var(--floral-white)",
         "ecru": "var(--ecru)"
       },
+      fontSize:{
+        'auto': '0.25vw'
+      },
       fill: {
         'transparent': 'transparent',
         "antique-white": "var(--antique-white)",

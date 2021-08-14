@@ -61,7 +61,7 @@ export const ContactMe = ({ className }: BasicProp) => {
 
     return (
         <div ref={refHandler} id="contactme" className={`${className}`}>
-            <div className="bg-deep-blue w-screen h-screen relative overflow-x-hidden z-0">
+            <div className="bg-deep-blue w-screen h-screen relative overflow-x-hidden">
                 {!isMobile && <motion.div
                     animate={{ x: transition ? '-5%' : '-100%' }} transition={{ type: "spring", duration: 2, delay: 1 }}
                     style={{ background: `linear-gradient(160deg, ${getComputedStyle(document.body).getPropertyValue('--deep-blue-shade')} 50%, transparent 50%)` }}
@@ -74,7 +74,7 @@ export const ContactMe = ({ className }: BasicProp) => {
                             <p className="font-main text-dark-grey whitespace-pre-line">Your email has been sent, I'll get back to you as soon as I can!</p>
                         </div>
                     </Popup>
-                    <HomeButton trigger={transition} />
+                    <HomeButton trigger={transition}/>
                     <motion.div
                         animate={{ clipPath: transition ? 'inset(0% 0 0% 0)' : 'inset(50% 0 50% 0)' }}
                         transition={{ duration: 0.2 }}

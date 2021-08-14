@@ -2,7 +2,7 @@ import { AiFillHome } from "react-icons/ai";
 import { directToPage } from "./components/helpers";
 import { motion } from "framer-motion";
 import { Props } from "framer-motion/types/types";
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { HashRouter, Route, Switch } from 'react-router-dom'
 import { MainPage } from "./components/MainPage";
 import { Resume } from "./components/Resume";
 
@@ -20,13 +20,13 @@ export const HomeButton = (props: Props) => {
       onClick={props.onClick} className={`${props.positionType} text-off-white w-8 h-8 z-40 ${props.position} hover:text-off-white-hover transform active:scale-90`}>
       <AiFillHome className="w-full h-full" />
     </motion.button>
-  )
+  ) 
 }
 HomeButton.defaultProps = defaultHomeButtonProp
 
 function App() {
   return (
-    <BrowserRouter basename="/portfolio">
+    <HashRouter>
       <Switch>
         <Route exact path="/">
           <MainPage />
@@ -35,7 +35,7 @@ function App() {
           <Resume />
         </Route>
       </Switch>
-    </BrowserRouter>
+    </HashRouter>
   );
 }
 

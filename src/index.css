@@ -31,14 +31,17 @@ code {
         @apply font-main text-dark-grey text-sm bg-off-white focus:outline-none focus:border-off-white-active border-2
     }
     .about-me{
-        @apply text-dark-grey-active h-fit font-main font-normal text-xs whitespace-pre-line
-    }
+        @apply text-dark-grey-active h-fit font-main font-normal text-xs lg:text-sm whitespace-pre-line mt-3
+    }   
     .projects-container{
         @apply w-screen h-screen z-30 pt-3 pl-5 pr-5 pb-10 flex flex-col lg:flex-row justify-between lg:justify-evenly items-center lg:items-end
     }
+    .navigate-button{ 
+        @apply w-14 h-14 pointer-events-auto text-off-white hover:text-off-white-hover transform active:scale-90 transition duration-100
+    }
     /* Resume */
     .languages {
-        @apply font-main text-dark-green bg-floral-white rounded-lg shadow-md px-2 py-1 font-semibold text-lg m-0.5
+        @apply font-main text-dark-green bg-floral-white rounded-lg shadow-md px-2 py-1 font-semibold text-sm m-0.5
     }
     .h1 {
         @apply font-main text-dark-green font-bold text-3xl border-b-2 border-green-800 mb-3
@@ -62,6 +65,7 @@ code {
         height: 100% !important;
         width: 100% !important;
         position: fixed !important;
+        z-index: 10000 !important;
         top: 0 !important;
         left: 0 !important;
         margin: 0 !important;

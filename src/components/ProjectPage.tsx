@@ -3,9 +3,7 @@ import { memo, useCallback, useState } from "react";
 import { isMobile } from "react-device-detect";
 import { useScrollListener } from "./Hooks";
 import { BasicProp } from "./Interfaces";
-import { BsArrowRightShort, BsArrowLeftShort } from "react-icons/bs";
 import { Projects } from "./Projects";
-import { directToPage } from "./helpers";
 import { HomeButton } from "../App";
 
 export const projectPageTypes = ['experience', 'work', 'work ii', 'work iii']
@@ -21,54 +19,20 @@ export const ProjectPage = memo(({ className }: BasicProp) => {
         }
     }, [])
 
-    const navigate = (n: number) => {
-        let nextIndex = (projectPageTypes.indexOf(currentPage) + n) % projectPageTypes.length
-        if (nextIndex === -1) nextIndex = projectPageTypes.length - 1
-
-        setCurrentPg(projectPageTypes[nextIndex])
-    }
-
     useScrollListener(mainDom, (isIn) => setTransState(isIn))
-
-    const menu = (
-        <div className="flex justify-center items-center ml-1 mr-1">
-            {!isMobile &&
-                <motion.div animate={{ opacity: transition ? 1 : 0 }}
-                    className="bg-off-white rounded-xl shadow-lg h-fit w-fit z-20 flex flex-col justify-center items-center z-40 px-1.5 py-1">
-                    <motion.p animate={{ opacity: transition ? 1 : 0 }} transition={{ type: "spring", duration: 1 }}
-                        className="font-main font-semibold text-dark-grey text-2xl">My Projects</motion.p>
-                    <motion.div
-                        animate={{ opacity: transition ? 1 : 0 }}
-                        transition={{ delay: 1 }}
-                        className="w-full flex justify-center mt-2">
-                        {projectPageTypes.map((type: string) =>
-                            <button onClick={() => { setCurrentPg(type); }} className={`font-main 
-        ${currentPage === type ? `text-off-white bg-dark-grey` : 'text-dark-grey bg-transparent'} duration-100 rounded-md px-1 m-0.25 transform hover:scale-110`}>
-                                {type}</button>
-                        )}
-                    </motion.div>
-                    <motion.div
-                        animate={{ opacity: transition ? 1 : 0 }}
-                        transition={{ delay: 1 }}
-                        className="w-full h-fit flex justify-center items-center relative">
-                        <button onClick={() => navigate(-1)} className="text-dark-grey h-8 transition duration-100 hover:text-dark-grey-hover transform active:scale-90"><BsArrowLeftShort className="w-full h-full" /></button>
-                        <button onClick={() => navigate(1)} className="text-dark-grey h-8 transition duration-100 hover:text-dark-grey-hover transform active:scale-90"><BsArrowRightShort className="w-full h-full" /></button>
-                    </motion.div>
-                </motion.div>}
-        </div>)
 
     return (
         <div id='myprojects' ref={refHandler} className={`${className}`}>
             <motion.div 
             className="bg-off-white w-full h-fit px-3 py-2 flex items-center z-50">
-                <h1 className="font-main font-semibold text-dark-grey text-xl mr-2">My Projects</h1>
+                <h1 className="font-main font-semibold text-dark-grey text-lg lg:text-2xl mr-2">My Projects</h1>
                 {projectPageTypes.map((type: string, index: number) =>
                     <button key={index} onClick={() => { setCurrentPg(type); }} className={`font-main text-sm
-                    ${currentPage === type ? `text-off-white bg-dark-grey` : 'text-dark-grey bg-transparent'} duration-100 rounded-md px-1 m-0.5 transform hover:scale-110`}>
+                    ${currentPage === type ? `text-off-white bg-dark-grey` : 'text-dark-grey bg-transparent'} duration-100 rounded-md px-1 m-0 lg:m-0.5 transform hover:scale-110`}>
                         {type}</button>
                 )}
             </motion.div>
-            <div className="bg-deep-blue w-screen h-pgpage lg:h-screen flex justify-center items-center overflow-x-hidden overflow-y-auto lg:overflow-y-hidden relative z-0">
+            <div className="bg-deep-blue w-screen h-pgpage lg:h-screen flex justify-center items-center overflow-x-hidden overflow-y-auto lg:overflow-y-hidden relative z-10">
                 {!isMobile && <motion.div
                     animate={{ x: transition ? '100%' : '10%' }} transition={{ type: "spring", duration: 2, delay: 1 }}
                     style={{ background: `linear-gradient(-160deg, ${getComputedStyle(document.body).getPropertyValue('--deep-blue-shade')} 50%, transparent 50%)` }}

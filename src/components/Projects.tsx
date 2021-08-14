@@ -59,12 +59,12 @@ export const Projects = memo((props: ProjectProp) => {
     }
 
     return (
-        <motion.div variants={parentVariant} initial='hidden' animate='visible' className={`${props.className} flex flex-col items-center justify-start w-full lg:w-1/3 h-full m-5`}>
+        <motion.div variants={parentVariant} initial='hidden' animate='visible' className={`${props.className} flex flex-col items-center justify-center w-full lg:w-1/3 h-full m-5`}>
             <div className={`w-fit ${props.taller ? 'lg:h-1/2 h-96' : 'h-fit'} mb-5 mt-5 flex justify-center items-center p-2 relative bg-antique-white`}>
                 <video playsInline muted autoPlay loop src={getFile(props.imgFileName, "video")} className="z-10 h-full" />
             </div>
-            <div className="flex flex-col h-fit">
-                <div className="w-full flex justify-start items-end whitespace-pre">
+            <div className="flex flex-col w-full h-fit">
+                <div className="w-full flex flex-wrap justify-start items-end whitespace-pre">
                     <h1 className="font-main text-off-white text-4xl font-semibold">{props.title}</h1>
                     &nbsp;&nbsp;&nbsp;
                     <p className="font-main text-off-white text-4xl font-thin">{props.year}</p>

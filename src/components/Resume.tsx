@@ -12,7 +12,7 @@ export const Resume = () => {
     const history = useHistory()
 
     return (
-        <div className="bg-deep-blue w-full h-full flex flex-col justify-center items-center relative py-4">
+        <div className="bg-deep-blue w-fit lg:w-full h-fit lg:h-full flex flex-col justify-center items-center relative py-4">
             <div style={{ width: '21cm' }} className="flex items-center py-2">
                 <HomeButton trigger={true} onClick={() => history.push('/')} positionType="static" />
                 <button onClick={() => window.print()} className="text-dark-green bg-off-white rounded-md ml-3 px-2 py-1 flex items-center justify-center transition duration-100 hover:bg-off-white-hover transform active:scale-90"><FaPrint className="h-full w-5 mr-2" />Print</button>
@@ -101,7 +101,7 @@ export const Resume = () => {
                         </ul>
                     </div>
                 </div>
-
+ 
                 {/* Second Column */}
                 <div className="flex flex-col h-full w-2/6">
                     {/* Profile */}
@@ -139,7 +139,7 @@ export const Resume = () => {
                     {/* Objective */}
                     <div className="row-span-1 p-1 h-fit mb-5">
                         <h1 className="h1">Objective</h1>
-                        <p className="font-main text-dark-green text-md">A Dedicated, passionate programmer with a strong eager to learn. While I take an interest in designing front-end UI, I'm happy to take on task of all sorts.
+                        <p className="font-main text-dark-green text-sm">A Dedicated, passionate programmer with a strong eager to learn. While I take an interest in designing front-end UI, I'm happy to take on task of all sorts.
                             I'm looking for a position that will provide me with an opportunity
                             for me to grow professionally and personally.</p>
                     </div>
@@ -160,7 +160,7 @@ export const Resume = () => {
 
                     {/* Framwork & Tools */}
                     <div className="row-span-3 h-fit mb-5">
-                        <h1 className="h1">Framwork & Tools</h1>
+                        <h1 className="h1">Framework & Tools</h1>
                         <div className="flex flex-wrap">
                             <h1 className="languages">React</h1>
                             <h1 className="languages">React Native</h1>
@@ -176,7 +176,7 @@ export const Resume = () => {
                     </div>
 
                     <div className="row-span-1 mt-auto w-full flex items-center">
-                        <h1 className="font-main font-semibold w-full text-off-white text-md bg-dark-green px-3 py-2">Last Updated: 12 August 2021</h1>
+                        <h1 className="font-main font-semibold w-full text-off-white text-sm bg-dark-green px-3 py-2">Last Updated: 12 August 2021</h1>
                     </div>
                 </div>
             </div>

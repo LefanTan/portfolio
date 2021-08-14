@@ -40,7 +40,7 @@ export const StartPage = memo(({ className }: BasicProp) => {
         from: { blueBg: `translateX(40%)`, whiteBg: `translateX(-10%)` },
         whiteBg: `translateX(-20%)`,
         blueBg: `translateX(45%)`,
-        zIndex: 20,
+        zIndex: 0,
         config: { mass: 1, friction: 60 },
         reset: true,
         reverse: !transitionState
@@ -88,7 +88,7 @@ export const StartPage = memo(({ className }: BasicProp) => {
                         transform: whiteBg
                     }}
                     className="absolute top-0 bottom-0 -left-1/2 -right-1/2" />
-                <div className="bg-transparent w-full h-full p-5 pt-16 pb-16 flex flex-col lg:flex-row justify-center items-center overflow-y-hidden z-50">
+                <div className="bg-transparent w-full h-full p-5 pt-16 pb-16 flex flex-col lg:flex-row justify-center items-center overflow-y-hidden z-10">
                     {(
                         <animated.img
                             src={profilePic}
