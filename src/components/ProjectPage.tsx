@@ -108,6 +108,19 @@ export const ProjectPage = memo(({ className }: BasicProp) => {
               <Projects
                 slideFrom="left"
                 transition={transition}
+                imgFileName="caldus.mp4"
+                title="Caldus"
+                year="2021"
+                languages={["react native", "js", "expo"]}
+                github="https://github.com/AnshDubey1999/Caldus"
+                taller
+                description="This is a hackathon mobile app project made under 12 hours.
+                This is a healthy recipe app that changes unhealthy ingredients to a healthier version if available. I've personally worked on the Recipe Screen, and it has been a lot of fun. It uses a food API from rapidapi as backend."
+              />
+              {/* {menu} */}
+              <Projects
+                slideFrom="right"
+                transition={transition}
                 imgFileName="wobblyisland.mp4"
                 title="Wobbly Island"
                 year="2020"
@@ -117,9 +130,12 @@ export const ProjectPage = memo(({ className }: BasicProp) => {
                 description="This is a hackathon unity project made by my friends and I.
                         We implemented basic procedural land generation using perlin noise and masked it with a circle gradient to get individual islands"
               />
-              {/* {menu} */}
+            </div>
+          )}
+          {currentPage === projectPageTypes[3] && (
+            <div className="projects-container">
               <Projects
-                slideFrom="right"
+                slideFrom="left"
                 transition={transition}
                 imgFileName="feelslog.mp4"
                 title="FeelsLog"
@@ -129,21 +145,6 @@ export const ProjectPage = memo(({ className }: BasicProp) => {
                 taller
                 description="An android app made to track your daily emotions in a diary format. You can upload a journal that 
                         includes your location, mood, description, photo etc, so you can better understand your own emotions"
-              />
-            </div>
-          )}
-          {currentPage === projectPageTypes[3] && (
-            <div className="projects-container">
-              <Projects
-                slideFrom="left"
-                transition={transition}
-                imgFileName="it-tracker.mp4"
-                title="Internet Tracker"
-                year="2019"
-                languages={["js", "html", "css", "chrome api"]}
-                github="https://github.com/LefanTan/Internet-Tracker"
-                taller
-                description="A hackathon project that got first trying out html, css and javascript. It is a chrome extension that tracks internet usage (time, websites visited)"
               />
               {/* {menu} */}
               <Projects
