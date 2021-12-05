@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.7c0cbcba.chunk.css",
-    "main.js": "/static/js/main.b390b86a.chunk.js",
-    "main.js.map": "/static/js/main.b390b86a.chunk.js.map",
+    "main.css": "/static/css/main.3f653b55.chunk.css",
+    "main.js": "/static/js/main.8a503ad3.chunk.js",
+    "main.js.map": "/static/js/main.8a503ad3.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.5ebc510a.js",
     "runtime-main.js.map": "/static/js/runtime-main.5ebc510a.js.map",
     "static/js/2.a1fa3970.chunk.js": "/static/js/2.a1fa3970.chunk.js",
     "static/js/2.a1fa3970.chunk.js.map": "/static/js/2.a1fa3970.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.7c0cbcba.chunk.css.map": "/static/css/main.7c0cbcba.chunk.css.map",
+    "static/css/main.3f653b55.chunk.css.map": "/static/css/main.3f653b55.chunk.css.map",
     "static/js/2.a1fa3970.chunk.js.LICENSE.txt": "/static/js/2.a1fa3970.chunk.js.LICENSE.txt",
     "static/media/Artboard 1.svg": "/static/media/Artboard 1.d7c55b5d.svg",
     "static/media/basictheory-chord.gif": "/static/media/basictheory-chord.b8a1bb6a.gif",
@@ -36,7 +36,7 @@
   "entrypoints": [
     "static/js/runtime-main.5ebc510a.js",
     "static/js/2.a1fa3970.chunk.js",
-    "static/css/main.7c0cbcba.chunk.css",
-    "static/js/main.b390b86a.chunk.js"
+    "static/css/main.3f653b55.chunk.css",
+    "static/js/main.8a503ad3.chunk.js"
   ]
 }
