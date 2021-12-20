@@ -17,6 +17,6 @@ Again, this portfolio website was rushed (made in 2 weeks since school is starti
 4. Use more Semantic HTMLs
 5. Better accessbility with ARIA
 6. It would be better if the website is linked to a backend server deployed on a cloud instance (currently in works with a new version of my portfolio website)
-  - so that I can easily change/update information without having to change react code and deploy them to github pages
-  - reflects how a real world application works 
-  - opportunity to learn!
+    - so that I can easily change/update information without having to change react code and deploy them to github pages
+    - reflects how a real world application works 
+    - opportunity to learn!
