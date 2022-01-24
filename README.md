@@ -1,5 +1,7 @@
 # (OLD) Lefan's Portfolio website
 
+[Website](https://lefantan.github.io/portfolio-v1/)
+
 This app is made with react. I've learned a lot trying different stuff when making this website.
 
 Couple things I learned is the different animation library for react, mainly React Spring and Framer motion which I liked a lot more.
