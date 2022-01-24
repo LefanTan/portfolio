@@ -45,6 +45,12 @@ export const Resume = () => {
             </div>
             <ul className="list">
               <li>CMPUT 301 : Introduction to Software Engineering</li>
+              <ul className="ml-2 list-disc italic">
+                <li>
+                  A full stack android app made to track your daily emotions in
+                  a diary format.
+                </li>
+              </ul>
               <li>CMPUT 401 : Software Process and Product Management</li>
               <li>CMPUT 404 - Web Applications and Architecture</li>
             </ul>
@@ -53,6 +59,24 @@ export const Resume = () => {
           {/* Work */}
           <div className="row-span-5 col-span-2 mt-5">
             <h1 className="h1">Work</h1>
+
+            <h2 className="title">Leftovers Foundation</h2>
+            <div className="flex">
+              <h2 className="description">Software Developer</h2>
+              <h2 className="description ml-auto">Sept 2021 - Present</h2>
+            </div>
+            <ul className="list">
+              <li>
+                Develop a self-contained gamification module for the Rescue Food
+                App (a tech-enabled solution to combat food waste) with over 300
+                users across canada.
+              </li>
+              <li>
+                Responsible for the UI/UX design of the gamification module
+              </li>
+              <li>Worked on existing backend to add new APIs</li>
+            </ul>
+
             <h2 className="title">Vizworx Inc</h2>
             <div className="flex">
               <h2 className="description">Software Developer</h2>
@@ -62,12 +86,9 @@ export const Resume = () => {
               <li>
                 Part of the development team working on a R&D project aimed at
                 identifying and deterring IUU (Illegal, unreported and
-                unregulated) fishing around the world. Sponsored by Canada’s
-                Digital Supercluster, in collaboration with McDonald, Dettwiler
-                & Associates and Simon Fraser University, our role is to provide
-                advanced XR visualizations through the fusion of data supplied
-                by MDA. Our goal is to allow analytics to access and view data
-                in an interactive and innovative way through the use of 3D space
+                unregulated) fishing around the world. Our goal is to allow
+                analytics to access and view data in an interactive and
+                innovative way through the use of 3D space
               </li>
               <li>
                 Responsible for developing and designing XR applications that
@@ -143,7 +164,7 @@ export const Resume = () => {
               </li>
             </ul>
 
-            <div className="flex mt-1">
+            {/* <div className="flex mt-1">
               <h2 className="title">FeelsLog</h2>
               <h2 className="title-extra">Academic Project</h2>
             </div>
@@ -160,7 +181,7 @@ export const Resume = () => {
                 Has a social feature that allows users to follow each other and
                 be able to view each other's mood entries
               </li>
-            </ul>
+            </ul> */}
           </div>
         </div>
 
